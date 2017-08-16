@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     
     #include "readTransportProperties.H"
     #include "createOutFile.H" // Create output variables and outfile
-    outFile << "Time\t" << "Ek\t" << "epsilon\t" << "L2(U)\t" << "L2(p)" << endl;
+    outFile << "Time\t" << "Ek\t" << "epsilon\t\t" << "L2(U)\t" << "L2(p)\t" << "Linf(U)\t" << "Linf(p)" << endl;
     
     // Calculate analytical field at time t=0;
     #include "TGFieldAtTime0.H"
