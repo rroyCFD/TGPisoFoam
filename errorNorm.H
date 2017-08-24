@@ -1,13 +1,13 @@
 // Velocity error norms--------------------------------------------------------------//
 Info << "Calculating Uerror" << endl;
-Uerror = Ustart*Foam::exp(-2*nu.value()*runTime.value()) - U;
+Uerror = Ustart*Foam::exp(-2.0*nu.value()*runTime.value()) - U;
 
 dimensionedScalar ULinfErr = max(mag(Uerror));          // infinity norm
 dimensionedScalar UL2err   = sqrt(sum(magSqr(Uerror))); // 2nd norm
 
 // Pressure error norms ----------------------------------------------------------//
 Info << "Calculating perror" << endl;
-perror = pstart*Foam::exp(-4*nu.value()*runTime.value()) - p;
+perror = pstart*Foam::exp(-4.0*nu.value()*runTime.value()) - p;
 
 dimensionedScalar pLinfErr = max(mag(perror));          // infinity norm
 dimensionedScalar pL2err   = sqrt(sum(magSqr(perror))); // 2nd norm
@@ -15,8 +15,8 @@ dimensionedScalar pL2err   = sqrt(sum(magSqr(perror))); // 2nd norm
 Info << "L2   error norm | Velocity: " << UL2err.value()   << "\tPressure: " << pL2err.value()   << endl;
 Info << "Linf error norm | Velocity: " << ULinfErr.value() << "\tPressure: " << pLinfErr.value() << endl;
 
-Info << "Foam::exp(-4*nu.value()*runTime.value()): " << Foam::exp(-4*nu.value()*runTime.value()) << endl;
-Info << "Foam::exp(-2*nu.value()*runTime.value()): " << Foam::exp(-2*nu.value()*runTime.value()) << endl;
+Info << "Pressure decay coeffs: " << Foam::exp(-4.0*nu.value()*runTime.value()) << endl;
+Info << "Velocity decay coeffs: " << Foam::exp(-2.0*nu.value()*runTime.value()) << endl;
 
 // Check error at time=0
 if (runTime.timeName() == "0")

@@ -15,12 +15,11 @@ volScalarField z = mesh.C().component(vector::Z);
 //                         * (cos(2.*z/L) + scalar(2.));
 
 //Initial Taylor Green field
-volVectorField Ustart = Uinit* ( vector(1,0,0) * sin(x/L) * cos(y/L)
-                - vector(0,1,0) * cos(x/L) * sin(y/L)
-                + vector(0,0,1) * scalar(0.));
+volVectorField Ustart = Uinit* (  vector(1,0,0) * sin(x/L) * cos(y/L)
+                                - vector(0,1,0) * cos(x/L) * sin(y/L)
+                                + vector(0,0,1) * scalar(0.));
 
-//volScalarField pstart = sqr(Uinit)/4*(cos(2.*x/L) + cos(2.*y/L));
-volScalarField pstart = sqr(Uinit)/4*((cos(2.*x/L) + cos(2.*y/L)) - scalar(2.0));
+volScalarField pstart = sqr(Uinit)/4*((cos(2.*x/L) + cos(2.*y/L)));
 
 
 if (init)

@@ -47,14 +47,19 @@ int main(int argc, char *argv[])
     #include "createMesh.H"
     #include "createFields.H"
     #include "initContinuityErrs.H"
-    # include "readTimeControls.H" 
+    #include "readTimeControls.H" 
     
     #include "readTransportProperties.H"
     #include "createOutFile.H" // Create output variables and outfile
-    outFile << "Time\t" << "Ek\t" << "epsilon\t\t" << "L2(U)\t" << "L2(p)\t" << "Linf(U)\t" << "Linf(p)" << endl;
+    #include "createErrorFields.H"
+    
+    #include "initialize.H" // initialize with TG vortex if init switch is on
     
     // Calculate analytical field at time t=0;
     #include "TGFieldAtTime0.H"
+    
+    #include "errorNorm.H"
+    #include "pRefValueUpdate.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
     Info<< "\nStarting time loop\n" << endl;
@@ -62,10 +67,11 @@ int main(int argc, char *argv[])
     while (runTime.loop())
     {
         Info<< "Time = " << runTime.timeName() << nl << endl;
+        #include "pRefValueUpdate.H"
 
         #include "readPISOControls.H"
         #include "CourantNo.H"
-	# include "setDeltaT.H" 
+	#include "setDeltaT.H" 
 
         // Pressure-velocity PISO corrector
         {
@@ -135,17 +141,16 @@ int main(int argc, char *argv[])
             }
         }        
         turbulence->correct();
-
-        runTime.write();
-        
-                
-        // Calculate error norms L2
+ 
+        // Calculate error norms
         #include "errorNorm.H"
         
         // Calculate global properties
         #include "globalProperties.H"
         #include "writeOutput.H"
 
+        runTime.write();
+              
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
             << nl << endl;
