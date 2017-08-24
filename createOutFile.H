@@ -33,3 +33,5 @@ if (Pstream::parRun())
         );
     }
 
+outFile << "Time\t" << "Ek\t" << "epsilon\t\t" << "L2(U)\t" << "L2(p)\t" << "Linf(U)\t" << "Linf(p)" << endl;
+    
