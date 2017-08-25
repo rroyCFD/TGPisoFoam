@@ -36,4 +36,5 @@ const Switch init
 (
    transportProperties.lookup("init")
 );
+Info << "Initialize: " << init << endl;
 // ************************************************************************* //

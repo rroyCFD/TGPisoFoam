@@ -36,7 +36,7 @@ Description
 #include "turbulenceModel.H"
 #include "IFstream.H"
 #include "OFstream.H"
-
+#include "IOmanip.H" // for input/ouput format control
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])

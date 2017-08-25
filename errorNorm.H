@@ -15,8 +15,8 @@ dimensionedScalar pL2err   = sqrt(sum(magSqr(perror))); // 2nd norm
 Info << "L2   error norm | Velocity: " << UL2err.value()   << "\tPressure: " << pL2err.value()   << endl;
 Info << "Linf error norm | Velocity: " << ULinfErr.value() << "\tPressure: " << pLinfErr.value() << endl;
 
-Info << "Pressure decay coeffs: " << Foam::exp(-4.0*nu.value()*runTime.value()) << endl;
-Info << "Velocity decay coeffs: " << Foam::exp(-2.0*nu.value()*runTime.value()) << endl;
+Info << "Pressure decay coeffs: " << setprecision(10) << Foam::exp(-4.0*nu.value()*runTime.value()) << endl;
+Info << "Velocity decay coeffs: " << setprecision(10) << Foam::exp(-2.0*nu.value()*runTime.value()) << endl;
 
 // Check error at time=0
 if (runTime.timeName() == "0")
