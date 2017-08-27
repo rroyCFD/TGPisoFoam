@@ -7,7 +7,14 @@ dimensionedScalar UL2err   = sqrt(sum(magSqr(Uerror))); // 2nd norm
 
 // Pressure error norms ----------------------------------------------------------//
 Info << "Calculating perror" << endl;
-perror = pstart*Foam::exp(-4.0*nu.value()*runTime.value()) - p;
+pRefValueAna  = sqr(Uinit)* 0.25*(
+                  Foam::cos(2.*xPRefCell/L.value())
+                + Foam::cos(2.*yPRefCell/L.value()) )
+                * Foam::exp(-4.*nu.value()*runTime.value());
+
+Info << "Analytical value at pRefCell: "<< pRefValueAna.value() << endl; 
+
+perror = pstart*Foam::exp(-4.0*nu.value()*runTime.value()) - pRefValueAna - p;
 
 dimensionedScalar pLinfErr = max(mag(perror));          // infinity norm
 dimensionedScalar pL2err   = sqrt(sum(magSqr(perror))); // 2nd norm

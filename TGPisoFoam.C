@@ -53,13 +53,8 @@ int main(int argc, char *argv[])
     #include "createOutFile.H" // Create output variables and outfile
     #include "createErrorFields.H"
     
-    #include "initialize.H" // initialize with TG vortex if init switch is on
-    
-    // Calculate analytical field at time t=0;
-    #include "TGFieldAtTime0.H"
-    
+    #include "initialize.H" // initialize with TG vortex    
     #include "errorNorm.H"
-    #include "pRefValueUpdate.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
     Info<< "\nStarting time loop\n" << endl;
@@ -67,8 +62,7 @@ int main(int argc, char *argv[])
     while (runTime.loop())
     {
         Info<< "Time = " << runTime.timeName() << nl << endl;
-        #include "pRefValueUpdate.H"
-
+        
         #include "readPISOControls.H"
         #include "CourantNo.H"
 	#include "setDeltaT.H" 
